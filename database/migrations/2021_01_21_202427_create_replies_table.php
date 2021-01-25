@@ -15,6 +15,10 @@ class CreateRepliesTable extends Migration
     {
         Schema::create('replies', function (Blueprint $table) {
             $table->id();
+            $table->text('body');
+            $table->integer('question_id')->unsigned();
+            $table->integer('user_id');
+            $table->foriegn('question_id')->on('id')->reference('questions')->onDelete('cascade');
             $table->timestamps();
         });
     }
